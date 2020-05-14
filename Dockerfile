@@ -5,10 +5,10 @@ WORKDIR /usr/src/databricks-cli
 COPY . .
 
 RUN pip install --upgrade pip && \
-    pip install -r dev-requirements.txt && \
+    pip install -r dev-requirements.txt -r tox-requirements.txt && \
     pip list && \
-    ./lint.sh && \
     pip install . && \
+    ./lint.sh && \
     pytest tests
 
 ENTRYPOINT [ "databricks" ]
